@@ -7,7 +7,7 @@
             <b-input
                 id="description"
                 class="mb-2 mr-sm-2 mb-sm-0"
-                placeholder="A gift"
+                placeholder="Gift description"
                 v-model="description"
             ></b-input>
 
@@ -15,7 +15,7 @@
             <b-input-group prepend="for" class="mb-2 mr-sm-2 mb-sm-0">
             <b-input 
                 id="giveto" 
-                placeholder="... name" 
+                placeholder="... recipient name" 
                 v-model="giveTo"></b-input>
             </b-input-group>
 

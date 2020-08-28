@@ -3,6 +3,8 @@
   <b-col></b-col>
   <b-col cols="10" lg="8">
    <h1>{{ title }}</h1>
+   <p class="text-center">{{ helper }}</p>
+   
    <Gift v-on:gift-added="giftAdded"></Gift>
    <GiftList v-on:update-gift="updateGift" v-bind:gift-list="gifts"></GiftList>
    <div class="mt-3 right" v-if="gifts.length > 0">
@@ -12,6 +14,8 @@
       <b-button variant="outline-danger" @click="clearAll">Clear All</b-button>
     </b-button-group>
   </div>
+  <div class="clearfix"></div>
+  <Action></Action>
   </b-col>
   <b-col></b-col>
 </b-row>
@@ -20,19 +24,22 @@
 <script>
 import Gift from './Gift.vue';
 import GiftList from './GiftList.vue';
+import Action from './Action';
 
 export default {
   name: 'Home',
   data(){
     return {
       title : 'My Gift List',
+      helper: 'Remind yourself what gifts to get your loved ones',
       gifts: [],
       errors: []
     }
   },
   components:{
     Gift,
-    GiftList
+    GiftList,
+    Action
   },
   // Fetches posts when the component is created.
   async created() {  

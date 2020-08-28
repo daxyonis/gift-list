@@ -1,5 +1,5 @@
 <template>
-<b-row>
+<b-row class="mt-3">
   <b-col></b-col>
   <b-col cols="10" lg="8">
    <h1>{{ title }}</h1>

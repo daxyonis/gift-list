@@ -5,8 +5,6 @@ import com.evkosoft.portfoliocrud.service.repository.GiftRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-
 @Service
 public class GiftServiceImpl implements GiftService {
 
@@ -15,7 +13,7 @@ public class GiftServiceImpl implements GiftService {
 
     @Override
     public Iterable<Gift> findAll() {
-        return giftRepository.findAll();
+        return giftRepository.findAllByOrderByGiveDate();
     }
 
     @Override
@@ -29,8 +27,13 @@ public class GiftServiceImpl implements GiftService {
     }
 
     @Override
+    public void deleteAll() {
+        giftRepository.deleteAll();
+    }
+
+    @Override
     public Gift create(Gift gift) {
-        Gift newGift = new Gift(null, gift.getDescription(), gift.getGiveTo(), gift.getGiveDate());
+        Gift newGift = new Gift(null, gift.getDescription(), gift.getGiveTo(), gift.getGiveDate(), false);
         return giftRepository.save(newGift);
     }
 

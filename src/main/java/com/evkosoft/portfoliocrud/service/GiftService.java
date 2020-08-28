@@ -16,4 +16,6 @@ public interface GiftService {
     void delete(Long id);
 
     Gift update(Gift gift);
+
+    void deleteAll();
 }

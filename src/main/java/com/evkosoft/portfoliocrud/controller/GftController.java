@@ -38,4 +38,10 @@ public class GftController {
         giftService.delete(id);
         return "OK";
     }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public String deleteAll(){
+        giftService.deleteAll();
+        return "OK";
+    }
 }

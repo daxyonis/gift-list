@@ -24,5 +24,6 @@ public class Gift {
     private String description;
     private String giveTo;
     private LocalDate giveDate;
+    private Boolean done = false;
 
 }

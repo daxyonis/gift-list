@@ -4,7 +4,14 @@
   <b-col cols="10" lg="8">
    <h1>{{ title }}</h1>
    <Gift v-on:gift-added="giftAdded"></Gift>
-   <GiftList v-bind:gift-list="gifts"></GiftList>
+   <GiftList v-on:update-gift="updateGift" v-bind:gift-list="gifts"></GiftList>
+   <div class="mt-3 right" v-if="gifts.length > 0">
+    <b-button-group>
+      <b-button variant="outline-primary" @click="checkAll">Check All</b-button>
+      <b-button variant="outline-secondary" @click="uncheckAll">Uncheck All</b-button>
+      <b-button variant="outline-danger" @click="clearAll">Clear All</b-button>
+    </b-button-group>
+  </div>
   </b-col>
   <b-col></b-col>
 </b-row>
@@ -44,6 +51,43 @@ export default {
       } catch (e) {
       this.errors.push(e)
       }      
+    },
+
+    async updateGift(gift){
+      try{
+        await this.$http.post(`${process.env.VUE_APP_API_URL}/gift/${gift.id}`, gift)              
+      } catch (e) {
+        this.errors.push(e)
+      }
+    },
+
+    checkAll() {
+      this.gifts.forEach(gift => {
+        // Update only those that are not yet checked
+        if(!gift.done){
+          gift.done = true;
+          this.updateGift(gift);
+        }
+      });
+    },
+
+    uncheckAll(){
+      this.gifts.forEach(gift => {
+        // Update only those that are checked
+        if(gift.done){
+          gift.done = false;
+          this.updateGift(gift);
+        }
+      });
+    },
+
+    async clearAll(){
+      try{
+        await this.$http.delete(`${process.env.VUE_APP_API_URL}/gift`)
+        this.gifts = [];
+      } catch (e) {
+        this.errors.push(e)
+      }
     }
   }
 }
@@ -53,5 +97,9 @@ export default {
 <style scoped>
 h1 {
   text-align: center;
+}
+
+.right {
+  float:right
 }
 </style>

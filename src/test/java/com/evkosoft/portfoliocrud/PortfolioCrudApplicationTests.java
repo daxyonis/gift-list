@@ -3,10 +3,10 @@ package com.evkosoft.portfoliocrud;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+// @SpringBootTest
 class PortfolioCrudApplicationTests {
 
-	@Test
+	// @Test
 	void contextLoads() {
 	}
 
